@@ -10,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.harpreet.mydictonary.fragment.FragmenSynonyms;
 import com.harpreet.mydictonary.fragment.FragmentAntonyms;
@@ -21,6 +25,8 @@ import java.util.List;
 
 public class Word_meaningActivity extends AppCompatActivity {
     private ViewPager viewPager;
+    TextView textview;
+    ImageView rose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,22 @@ public class Word_meaningActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar();
         toolbar.setNavigationIcon(R.drawable.back_btn);
+        textview = findViewById(R.id.textv);
+        rose = findViewById(R.id.rose);
+        rose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Word_meaningActivity.this, "like it"  , Toast.LENGTH_SHORT).show();
+            }
+        });
+        textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Word_meaningActivity.this, "oh yeah", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         viewPager = findViewById(R.id.tab_viewpager);
         if(viewPager!=null)
         {
