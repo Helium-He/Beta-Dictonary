@@ -2,13 +2,16 @@
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="match_parent"
+    android:id="@+id/container"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +25,6 @@ android:layout_height="match_parent">
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:fontFamily="@font/custom_font"
-
                 android:text="My Dictionary"
                 android:textColor="@android:color/background_dark"
                 android:textSize="30dp" />

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/maincolor"
+        >
+
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expandedTitleMarginBottom="60dp"
+            app:expandedTitleMarginEnd="5dp"
+            app:expandedTitleMarginStart="15dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleTextAppearance="@style/expandedTitleText"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/mToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin"
+                app:title=" "
+                >
+
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <TextView
+            android:id="@+id/textv"
+            android:layout_width="wrap_content"
+            android:layout_height="69dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/custom_font2"
+            android:text="English word"
+            android:textColor="@color/white"
+            android:textSize="55dp" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_gravity="bottom"
+            android:background="@color/maincolor"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/MytabTest" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tab_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="743dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:clickable="true"
+        android:backgroundTint="@color/maincolor"
+        app:srcCompat="@drawable/speaker" />
+
+
+
+</android.support.design.widget.CoordinatorLayout>

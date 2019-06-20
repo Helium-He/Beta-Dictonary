@@ -1,6 +1,5 @@
 package com.harpreet.mydictonary;
-
-
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,20 +21,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolBar);
         textView = findViewById(R.id.textView);
         searchView = findViewById(R.id.search_view);
-      /*  searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchView.setIconified(false);
-            }
-
-        });
-
-
-    */
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchView.onActionViewExpanded();
+                Intent intent = new Intent(MainActivity.this,Word_meaningActivity.class);
+                startActivity(intent);
             }
     });
 
