@@ -1,6 +1,7 @@
 package com.harpreet.mydictonary;
 
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -46,7 +47,10 @@ public class Word_meaningActivity extends AppCompatActivity {
         textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Word_meaningActivity.this, "oh yeah", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(Word_meaningActivity.this, "oh yeah", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(v,textview.getText().toString(),Snackbar.LENGTH_LONG);
+                snackbar.show();
+
             }
         });
 
