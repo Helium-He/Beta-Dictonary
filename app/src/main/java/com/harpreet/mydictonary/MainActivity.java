@@ -1,7 +1,9 @@
 package com.harpreet.mydictonary;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
@@ -45,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id==R.id.item_setting)
         {
-            return  true;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View view = inflater.inflate(R.layout.activity_setting,null);
+            builder.setView(view);
+            //builder.setTitle("Setting");
+            AlertDialog myalert_dialogue = builder.create();
+            myalert_dialogue.show();
+
         }
         if(id == R.id.item_exit)
         {
