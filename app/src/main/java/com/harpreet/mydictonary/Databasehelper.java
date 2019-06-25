@@ -1,5 +1,4 @@
 package com.harpreet.mydictonary;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -7,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +46,6 @@ public class Databasehelper extends SQLiteOpenHelper {
                 throw  new Error("Error copying database");
             }
         }
-
     }
 
 
@@ -71,13 +68,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 
         }
         return checkdb != null?true : false ;
-
-
-
     }
-
-
-
 
     private void copyDatabase() throws IOException{
 
@@ -99,7 +90,7 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     public void openDatabase() throws SQLException{
         String myPath = DB_PATH+DB_NAME;
-        mDatabase = SQLiteDatabase.openDatabase(myPath,null,SQLiteDatabase.OPEN_READONLY);
+        mDatabase = SQLiteDatabase.openDatabase(myPath,null,SQLiteDatabase.OPEN_READWRITE);
     }
 
     @Override
@@ -126,18 +117,28 @@ public class Databasehelper extends SQLiteOpenHelper {
         {
             e.printStackTrace();
         }
-
-
     }
+
     public Cursor getmeaning(String text)
+
     {
-        Cursor c= mDatabase.rawQuery("SELECT en_definition,example,synonyms,antonyms FROM words WHERE en_word==UPPER('"+text+"')",null);
+        text.replaceAll("\\s+","");
+        Cursor c= mDatabase.rawQuery("SELECT en_definition,example,synonyms,antonyms FROM words WHERE en_word==UPPER('"+text+"')"
+                ,null);
         return c;
     }
     public Cursor getSuggestions(String text){
-        Cursor c = mDatabase.rawQuery("SELECT _id , en_word FROM words WHERE en_word LIKE'"+text+"%' LIMIT 40",null);
+        text.replaceAll("\\s+","");
+        Log.e("mm",text+"n");
+        Cursor c = mDatabase.rawQuery("SELECT _id ,en_word FROM words WHERE en_word LIKE'"+text+"%' LIMIT 40",
+                null);
         return c;
-
     }
+
+    public void insertHistory(String text)
+    {   text.replaceAll("\\s+","");
+        mDatabase.execSQL("INSERT INTO history(word) values('"+text+"')");
+    }
+
 
 }

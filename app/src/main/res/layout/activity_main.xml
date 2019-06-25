@@ -38,7 +38,9 @@ android:layout_height="match_parent"
                 android:contextClickable="true"
                 android:clickable="true"
                 android:focusable="true"
-                app:queryHint="Type Word..." />
+                app:queryHint="Type Word..."
+
+                />
         </LinearLayout>
 
 

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         searchView.setSuggestionsAdapter(suggestionadapter);
-        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener(){
             @Override
             public boolean onSuggestionSelect(int i) {
                 return false;
@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                    String text = searchView.getQuery().toString();
+                    String text = searchView.getQuery().toString().replaceAll("\\s+","");
+
                     Cursor c = mdatabase.getmeaning(text);
                 if (c.getCount()==0)
                 {
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-
+                s.replaceAll("\\s+","");
                 searchView.setIconifiedByDefault(false);
                 Cursor cursorSuggestion = mdatabase.getSuggestions(s);
                 suggestionadapter.changeCursor(cursorSuggestion);

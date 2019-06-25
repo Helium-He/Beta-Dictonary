@@ -2,7 +2,6 @@ package com.harpreet.mydictonary;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +44,6 @@ public class LoadDatabase extends AsyncTask<Void,Void,Boolean> {
         mdatabasehelper.close();
         return null;
     }
-
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);

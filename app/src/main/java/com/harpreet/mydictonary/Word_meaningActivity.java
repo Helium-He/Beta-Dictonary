@@ -1,5 +1,8 @@
 package com.harpreet.mydictonary;
 
+import android.database.Cursor;
+import android.database.SQLException;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -10,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,20 +27,53 @@ import com.harpreet.mydictonary.fragment.FragmentExample;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Word_meaningActivity extends AppCompatActivity {
     private ViewPager viewPager;
     TextView textview;
     ImageView rose;
+
+    String en_word;
+    Databasehelper myDbHelper;
+    Cursor c = null;
+
+    public String synonyms,antonyms,example,en_defination;
+    TextToSpeech prom;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_meaning);
+        Bundle bundle = getIntent().getExtras();
+        en_word = bundle.getString("en_word");
+        myDbHelper = new Databasehelper(this);
+        try{
+            myDbHelper.openDatabase();
+
+        }
+        catch (SQLException e)
+        {
+            throw e;
+        }
+        c = myDbHelper.getmeaning(en_word);
+        if(c.moveToFirst()){
+            en_defination = c.getString(c.getColumnIndex("en_definition"));
+            example=c.getString(c.getColumnIndex("example"));
+            synonyms=c.getString(c.getColumnIndex("synonyms"));
+            antonyms=c.getString(c.getColumnIndex("antonyms"));
+        }
+        myDbHelper.insertHistory(en_word);
+
+
         Toolbar toolbar = findViewById(R.id.mToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar();
         toolbar.setNavigationIcon(R.drawable.back_btn);
         textview = findViewById(R.id.textv);
+        textview.setText(en_word);
+
         rose = findViewById(R.id.rose);
         rose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +87,25 @@ public class Word_meaningActivity extends AppCompatActivity {
               //  Toast.makeText(Word_meaningActivity.this, "oh yeah", Toast.LENGTH_SHORT).show();
                 Snackbar snackbar = Snackbar.make(v,textview.getText().toString(),Snackbar.LENGTH_LONG);
                 snackbar.show();
+                prom  = new TextToSpeech(Word_meaningActivity.this, new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if(status == TextToSpeech.SUCCESS)
+                        {
+                            int result = prom.setLanguage(Locale.getDefault());
+                            if(result==TextToSpeech.LANG_MISSING_DATA || result==TextToSpeech.LANG_NOT_SUPPORTED){
+                                Log.e("error","language not supported");
+                            }
+                            else
+                            {
+                                prom.speak(en_word,TextToSpeech.QUEUE_FLUSH,null);
+                            }
+                        }
+                        else
+                            Log.e("error","Initialization failed");
+
+                    }
+                });
 
             }
         });
@@ -67,13 +123,9 @@ public class Word_meaningActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-
-
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
@@ -81,8 +133,6 @@ public class Word_meaningActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private class viewpagerAdapter extends FragmentPagerAdapter{
