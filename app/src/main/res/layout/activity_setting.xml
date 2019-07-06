@@ -16,6 +16,7 @@
         android:textColor="@android:color/black"
         />
         <android.support.v7.widget.CardView
+            android:id="@+id/clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foreground="?selectableItemBackground"
@@ -28,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
-                android:text="Clear"
+                android:text="Clear History"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 

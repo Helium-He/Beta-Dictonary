@@ -62,6 +62,12 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
         <TextView
             android:id="@+id/textv"
             android:layout_width="wrap_content"
@@ -69,10 +75,18 @@
             android:layout_gravity="center"
             android:clickable="true"
             android:fontFamily="@font/custom_font5"
-            android:text="English word"
+            android:text="English"
             android:textColor="@color/white"
-            android:textSize="55dp" />
+            android:textSize="55dp"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/speaker"
+            android:paddingTop="8dp"
+            />
+
+    </LinearLayout>
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"

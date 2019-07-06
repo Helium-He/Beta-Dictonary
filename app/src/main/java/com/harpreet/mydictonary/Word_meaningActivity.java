@@ -1,5 +1,6 @@
 package com.harpreet.mydictonary;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.speech.tts.TextToSpeech;
@@ -28,6 +29,8 @@ import com.harpreet.mydictonary.fragment.FragmentExample;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Word_meaningActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -40,7 +43,7 @@ public class Word_meaningActivity extends AppCompatActivity {
 
     public String synonyms,antonyms,example,en_defination;
     TextToSpeech prom;
-
+    boolean startedFromShare=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,32 @@ public class Word_meaningActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         en_word = bundle.getString("en_word");
         myDbHelper = new Databasehelper(this);
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+                startedFromShare=true;
+
+                if (sharedText != null) {
+                    Pattern p = Pattern.compile("[A-Za-z ]{1,25}");
+                    Matcher m = p.matcher(sharedText);
+
+                    if(m.matches())
+                    {
+                        en_word=sharedText;
+                    }
+                    else
+                    {
+                        en_word="Not Available";
+                    }
+
+                }
+
+            }
+        }
         try{
             myDbHelper.openDatabase();
 
@@ -63,8 +92,12 @@ public class Word_meaningActivity extends AppCompatActivity {
             example=c.getString(c.getColumnIndex("example"));
             synonyms=c.getString(c.getColumnIndex("synonyms"));
             antonyms=c.getString(c.getColumnIndex("antonyms"));
+            myDbHelper.insertHistory(en_word);
+
         }
-        myDbHelper.insertHistory(en_word);
+        else {
+            en_word="Not Avaliable";
+        }
 
 
         Toolbar toolbar = findViewById(R.id.mToolbar);
@@ -180,7 +213,16 @@ public class Word_meaningActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
-            onBackPressed();
+            if(startedFromShare)
+            {
+                Intent intent = new Intent(this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+            else
+            {
+                onBackPressed();
+            }
         }
 
         return super.onOptionsItemSelected(item);

@@ -122,13 +122,13 @@ public class Databasehelper extends SQLiteOpenHelper {
     public Cursor getmeaning(String text)
 
     {
-        text.replaceAll("\\s+","");
+        text =text.replaceAll("\\s+","");
         Cursor c= mDatabase.rawQuery("SELECT en_definition,example,synonyms,antonyms FROM words WHERE en_word==UPPER('"+text+"')"
                 ,null);
         return c;
     }
     public Cursor getSuggestions(String text){
-        text.replaceAll("\\s+","");
+        text = text.replaceAll("\\s+","");
         Log.e("mm",text+"n");
         Cursor c = mDatabase.rawQuery("SELECT _id ,en_word FROM words WHERE en_word LIKE'"+text+"%' LIMIT 40",
                 null);
@@ -136,9 +136,17 @@ public class Databasehelper extends SQLiteOpenHelper {
     }
 
     public void insertHistory(String text)
-    {   text.replaceAll("\\s+","");
+    {   text =text.replaceAll("\\s+","");
         mDatabase.execSQL("INSERT INTO history(word) values('"+text+"')");
     }
-
+    public Cursor getHistory()
+    {
+        Cursor c= mDatabase.rawQuery("select distinct  word, en_definition from history h join words w on h.word==w.en_word order by h._id desc",null);
+        return c;
+    }
+    public void deletehistory()
+    {
+        mDatabase.execSQL("DELETE FROM history");
+    }
 
 }
