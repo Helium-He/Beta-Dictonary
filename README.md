@@ -1,6 +1,8 @@
 # Beta Dictonary
 
+![GitHub Logo]()
 ## Dictionary Android App with beautiful gui
+
 
 
 ## Features: ##
