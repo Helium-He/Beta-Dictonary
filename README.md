@@ -12,10 +12,19 @@
 
 ## First Look: ##
 
-![](https://github.com/Helium-He/MyDictonary/blob/master/raw/screens(1).png "Logo Title Text 1")
+![](https://github.com/Helium-He/MyDictonary/blob/master/raw/screenshots.png "Logo Title Text 1")
 
 
-## Feel free to use..
+## Feel free to use for learning purpose... 
+      -""""""-.
+   .'          '.
+  /   O    -=-   \
+ :                :
+ |                |  
+ : ',          ,' :
+  \  '-......-'  /
+   '.          .'
+     '-......-'
 
 
 
