@@ -1,6 +1,7 @@
-
-![](https://github.com/Helium-He/MyDictonary/blob/master/raw/i.png) 
 # Beta Dictonary 
+ 
+![Beta Dictonary ](https://github.com/Helium-He/MyDictonary/blob/master/raw/i.png "Beta Dictonary ")
+
 
 ## Dictionary Android App with beautiful gui
 
