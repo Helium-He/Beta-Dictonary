@@ -1,6 +1,6 @@
 # Beta Dictonary
 
-![GitHub Logo]()
+![](https://github.com/Helium-He/MyDictonary/blob/master/raw/i.png)
 ## Dictionary Android App with beautiful gui
 
 
