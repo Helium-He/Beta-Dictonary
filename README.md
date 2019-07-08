@@ -16,7 +16,7 @@
 
 
 ## Feel free to use for learning purpose... 
-#     \,,/(^_^)\,,/
+#     (^_^)
 
 
 
