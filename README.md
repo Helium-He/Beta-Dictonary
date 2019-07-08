@@ -12,7 +12,7 @@
 
 
 
-## First Look: ##
+## Screenshots ##
 
 ![](https://github.com/Helium-He/MyDictonary/blob/master/raw/screenshots.png "Logo Title Text 1")
 
