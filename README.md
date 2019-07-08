@@ -18,6 +18,7 @@
 
 
 ## Feel free to use for learning purpose... :grin:
+Note: App support android version greater than 5.0.
 
 
 
