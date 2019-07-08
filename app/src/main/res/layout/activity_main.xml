@@ -26,7 +26,7 @@ android:layout_height="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:fontFamily="@font/custom_font"
-                android:text="My Dictionary"
+                android:text="@string/app_name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="30dp" />
 
