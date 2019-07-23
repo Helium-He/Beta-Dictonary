@@ -1,4 +1,4 @@
-#  ![# Beta Dictonary ](https://github.com/Helium-He/MyDictonary/blob/master/raw/i.png "Beta Dictonary ") Beta Dictonary
+#  ![# Beta Dictionary ](https://github.com/Helium-He/MyDictonary/blob/master/raw/i.png "Beta Dictonary ") Beta Dictonary
 
 ## [Click to Download](https://github.com/Helium-He/MyDictonary/raw/master/raw/MyDictionary.apk)
 ## Dictionary Android App with beautiful gui
